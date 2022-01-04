@@ -12,7 +12,7 @@
         register: pods
 
       - set_fact:
-          pods_count: pods.resources | count
+          pods_count: "{{ pods.resources | count }}"
 
       - debug:
           var: "{{ pods_count }}"
