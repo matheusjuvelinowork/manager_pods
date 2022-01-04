@@ -6,9 +6,9 @@
     # --------------------------------------------------
   
       - k8s_info:
-          name: {{ name }}
+          name: "{{ name }}"
           kind: Pods
-          namespace: {{ namespace }}
+          namespace: "{{ namespace }}"
         register: pods
 
       - set_fact:
