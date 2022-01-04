@@ -6,18 +6,18 @@
     # --------------------------------------------------
   
       - k8s_scale:
-          name: {{ name }}
+          name: "{{ name }}"
           api_version: v1
           kind: Deployment
-          namespace: {{ namespace }}
-          replicas: {{ quantity }}
+          namespace: "{{ namespace }}"
+          replicas: "{{ quantity }}"
         register: result
 
       - set_fact:
           pods_in_running: result.spec.replicas
 
       - debug:
-          var: {{ pods_in_running }}
+          var: "{{ pods_in_running }}"
   
       - set_fact:
           add_info: "Alteração da quantidade de pods em execução executada com SUCESSO!!!"
