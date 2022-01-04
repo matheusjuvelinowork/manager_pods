@@ -3,3 +3,4 @@ hostname: ""
 name: ""
 namespace: ""
 quantity: 0
+pods_count: 0

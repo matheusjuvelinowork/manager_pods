@@ -7,14 +7,13 @@
   
       - name: get_running_pods
         include_tasks: get_running_pods.yml
-        register: result
 
       - debug:
-          var: "{{ result }}"
+          var: "{{ pods_count }}"
   
       - name: set_running_pods
         include_tasks: set_running_pods.yml
-        when: result.pods_count < 0
+        when: pods_count < 0
   
       - name: SET FACT MSG RESULT SUCCESS
         set_fact:
