@@ -1,0 +1,16 @@
+---
+- name: "PLAYBOOK SH-SO-MANAGER-PODS - K8S"
+  hosts: "{{ hostname | lower }}"
+  gather_facts: false
+
+  collections:
+    - kubernetes.core
+
+  tasks:
+    - name: MANAGE RUNNING PODS
+      include_tasks: tasks/manage_running_pods.yml
+
+    - name: ANSIBLE-DIARIO-DE-BORDO - WINDOWS
+      include_tasks: tasks/diario_de_bordo.yml
+        
+  

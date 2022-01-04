@@ -1,0 +1,39 @@
+---
+
+  - name: OBTER PODS EM EXECUÇÃO
+    # --------------------------------------------------
+    block:
+    # --------------------------------------------------
+  
+      - k8s_info:
+          name: {{ name }}
+          kind: Pods
+          namespace: {{ namespace }}
+        register: pods
+
+      - set_fact:
+          pods_count: pods.resources | count
+
+      - debug:
+          var: {{ pods_count }}
+  
+      - set_fact:
+          add_info: "Obtenção de pods em execução executada com SUCESSO!!!"
+  
+      - debug:
+          msg: "{{ add_info }}"
+  
+  
+    # --------------------------------------------------
+    rescue:
+    # --------------------------------------------------
+      - name: SET FACT MSG RESULT FAILED
+        set_fact:
+          msg_result: "Obtenção de pods em execução executada com ERRO!!!"
+  
+      - debug:
+          var: msg_result
+  
+      - fail:
+          msg: "{{ msg_result }}"
+  
