@@ -8,6 +8,9 @@
       - name: get_running_pods
         include_tasks: get_running_pods.yml
         register: result
+
+      - debug:
+          var: "{{ result }}"
   
       - name: set_running_pods
         include_tasks: set_running_pods.yml
