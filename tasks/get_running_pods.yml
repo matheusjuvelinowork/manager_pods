@@ -15,7 +15,7 @@
           pods_count: "{{ pods.resources | count }}"
 
       - debug:
-          var: "{{ pods_count }}"
+          pods_count: "{{ pods_count }}"
   
       - set_fact:
           add_info: "Obtenção de pods em execução executada com SUCESSO!!!"
