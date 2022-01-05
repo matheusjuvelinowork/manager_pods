@@ -10,7 +10,7 @@
     - name: MANAGE RUNNING PODS
       include_tasks: tasks/manage_replicas.yml
 
-    - name: ANSIBLE-DIARIO-DE-BORDO - WINDOWS
-      include_tasks: tasks/diario_de_bordo.yml
+    # - name: ANSIBLE-DIARIO-DE-BORDO - WINDOWS
+    #   include_tasks: tasks/diario_de_bordo.yml
         
   
