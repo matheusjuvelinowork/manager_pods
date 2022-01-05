@@ -13,7 +13,7 @@
       register: result_execucao
 
     - debug:
-        var: "{{ result_execucao }}"
+        var: result_execucao
 
     - set_fact:
         ready_replicas_count: "{{ result_execucao.resources[0].status.readyReplicas }}"
