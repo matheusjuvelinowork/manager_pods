@@ -12,14 +12,8 @@
           namespace: "{{ namespace }}"
         register: result
 
-      - debug:
-          var: "{{ result }}"
-
       - set_fact:
           ready_replicas_count: "{{ result.resources[0].status.readyReplicas }}"
-
-      - debug:
-          ready_replicas: "{{ ready_replicas_count }}"
   
       - set_fact:
           add_info: "Obtenção de réplicas em execução executada com SUCESSO!!!"
