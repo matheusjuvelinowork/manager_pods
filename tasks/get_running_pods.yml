@@ -7,9 +7,10 @@
   
       - name: OBTER PODS EM EXECUÇÃO
         k8s_info:
-          name: "{{ name }}"
           kind: Pods
           namespace: "{{ namespace }}"
+          label_selectors:
+            - "app = {{ name }}"
         register: pods
 
       - debug:
