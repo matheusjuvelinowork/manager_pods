@@ -1,21 +1,25 @@
 ---
 
-  - name: OBTER PODS EM EXECUÇÃO
+  - name: PLAYBOOK PARA OBTER PODS EM EXECUÇÃO
     # --------------------------------------------------
     block:
     # --------------------------------------------------
   
-      - k8s_info:
+      - name: OBTER PODS EM EXECUÇÃO
+        k8s_info:
           name: "{{ name }}"
           kind: Pods
           namespace: "{{ namespace }}"
         register: pods
 
-      - set_fact:
-          pods_count: "{{ pods.resources | count }}"
-
       - debug:
-          var: "{{ pods_count }}"
+          var: "{{ pods }}"
+
+      # - set_fact:
+      #     pods_count: "{{ pods.resources | count }}"
+
+      # - debug:
+      #     var: "{{ pods_count }}"
   
       - set_fact:
           add_info: "Obtenção de pods em execução executada com SUCESSO!!!"
