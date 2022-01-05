@@ -15,7 +15,7 @@
 
     - name: set_replicas
       include_tasks: set_replicas.yml
-      when: ready_replicas_count < 0
+      when: "{{ ready_replicas_count < 0 }}"
 
     - name: SET FACT MSG RESULT SUCCESS
       set_fact:
