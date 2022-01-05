@@ -1,11 +1,11 @@
 ---
 
-  - name: OBTER QUANTIDADE DE RÉPLICAS EM EXECUÇÃO
+  - name: OBTER QUANTIDADE DE RÉPLICAS
     # --------------------------------------------------
     block:
     # --------------------------------------------------
   
-      - name: OBTER QUANTIDADE DE RÉPLICAS EM EXECUÇÃO POR DEPLOYMENT
+      - name: EM EXECUÇÃO
         k8s_info:
           name: "{{ name }}"
           kind: Deployment

@@ -5,15 +5,15 @@
     block:
     # --------------------------------------------------
   
-      - name: get_running_pods
-        include_tasks: get_running_pods.yml
+      - name: get_replicas
+        include_tasks: get_replicas.yml
         register: result
 
       - debug:
           var: "{{ result.ready_replicas_count }}"
   
-      - name: set_running_pods
-        include_tasks: set_running_pods.yml
+      - name: set_replicas
+        include_tasks: set_replicas.yml
         when: ready_replicas_count < 0
   
       - name: SET FACT MSG RESULT SUCCESS
