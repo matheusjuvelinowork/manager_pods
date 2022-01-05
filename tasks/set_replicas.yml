@@ -1,22 +1,26 @@
 ---
 
-- name: OBTER QUANTIDADE DE RÉPLICAS
+- name: ALTERAR QUANTIDADE DE RÉPLICAS EM EXECUÇÃO
   # --------------------------------------------------
   block:
   # --------------------------------------------------
 
-    - name: EM EXECUÇÃO
-      k8s_info:
+    - k8s_scale:
         name: "{{ name }}"
+        api_version: v1
         kind: Deployment
         namespace: "{{ namespace }}"
+        replicas: "{{ quantity }}"
       register: result
 
     - set_fact:
-        ready_replicas_count: "{{ result.resources[0].status.readyReplicas }}"
+        pods_in_running: result.spec.replicas
+
+    - debug:
+        var: "{{ pods_in_running }}"
 
     - set_fact:
-        add_info: "Obtenção de réplicas em execução executada com SUCESSO!!!"
+        add_info: "Alteração da quantidade de réplicas executada com SUCESSO!!!"
 
     - debug:
         msg: "{{ add_info }}"
@@ -27,11 +31,10 @@
   # --------------------------------------------------
     - name: SET FACT MSG RESULT FAILED
       set_fact:
-        msg_result: "Obtenção de réplicas executada com ERRO!!!"
+        msg_result: "Alteração da quantidade de réplicas executada com ERRO!!!"
 
     - debug:
         var: msg_result
 
     - fail:
         msg: "{{ msg_result }}"
-  

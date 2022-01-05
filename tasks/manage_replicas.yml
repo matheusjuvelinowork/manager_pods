@@ -1,51 +1,54 @@
 ---
 
-  - name: GERENCIAR PODS EM EXECUÇÃO
-    # --------------------------------------------------
-    block:
-    # --------------------------------------------------
-  
-      - name: get_replicas
-        include_tasks: get_replicas.yml
-        register: result
-  
-      - name: set_replicas
-        include_tasks: set_replicas.yml
-        when: result.ready_replicas_count < 0
-  
-      - name: SET FACT MSG RESULT SUCCESS
-        set_fact:
-          msg_result: "Automação de alterar quantidade de pods em execução executada com SUCESSO!!!"
-  
-      - name: SET STAT MSG RESULT SUCCESS
-        set_stats:
-          data:
-            msg_result_stats: "{{ msg_result }}"
-  
-      - name: MSG RESULT SUCCESS
-        debug:
-          msg: "{{ msg_result }}"
-  
-      - set_fact:
-          return_code: "true"
-  
-    # --------------------------------------------------
-    rescue:
-    # --------------------------------------------------
-      - name: SET FACT MSG RESULT FAILED
-        set_fact:
-          msg_result: "Automação de Limpeza de diretorios executada com ERRO!!!"
-  
-      - debug:
-          var: msg_result
-  
-      - name: SET FACT MSG RESULT IF RESULT IS NOT DEFINED
-        set_fact:
-          msg_result: "Automação de Limpeza de diretorios executada com ERRO!!!"
-  
-      - fail:
-          msg: "{{ msg_result }}"
-  
-      - set_fact:
-          return_code: "false"
-  
+- name: GERENCIAR RÉPLICAS EM EXECUÇÃO
+
+# --------------------------------------------------
+  block:
+# --------------------------------------------------
+
+    - name: get_replicas
+      include_tasks: get_replicas.yml
+      register: result   
+
+    - debug:
+        var: result
+
+    - name: set_replicas
+      include_tasks: set_replicas.yml
+      when: result.ready_replicas_count < 0
+
+    - name: SET FACT MSG RESULT SUCCESS
+      set_fact:
+        msg_result: "Automação de gerenciar quantidade de réplicas executada com SUCESSO!!!"
+
+    - name: SET STAT MSG RESULT SUCCESS
+      set_stats:
+        data:
+          msg_result_stats: "{{ msg_result }}"
+
+    - name: MSG RESULT SUCCESS
+      debug:
+        msg: "{{ msg_result }}"
+
+    - set_fact:
+        return_code: "true"
+
+  # --------------------------------------------------
+  rescue:
+  # --------------------------------------------------
+    - name: SET FACT MSG RESULT FAILED
+      set_fact:
+        msg_result: "Automação de gerenciar quantidade de réplicas executada com ERRO!!!"
+
+    - debug:
+        var: msg_result
+
+    - name: SET FACT MSG RESULT IF RESULT IS NOT DEFINED
+      set_fact:
+        msg_result: "Automação de gerenciar quantidade de réplicas executada com ERRO!!!"
+
+    - fail:
+        msg: "{{ msg_result }}"
+
+    - set_fact:
+        return_code: "false"
