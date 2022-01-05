@@ -10,10 +10,13 @@
         name: "{{ name }}"
         kind: Deployment
         namespace: "{{ namespace }}"
-      register: result
+      register: result_execucao
+
+    - debug:
+        var: "{{ result_execucao }}"
 
     - set_fact:
-        ready_replicas_count: "{{ result.resources[0].status.readyReplicas }}"
+        ready_replicas_count: "{{ result_execucao.resources[0].status.readyReplicas }}"
 
     - set_fact:
         add_info: "Obtenção de réplicas em execução executada com SUCESSO!!!"
