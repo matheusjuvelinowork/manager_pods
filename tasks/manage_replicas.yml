@@ -8,13 +8,10 @@
       - name: get_replicas
         include_tasks: get_replicas.yml
         register: result
-
-      - debug:
-          var: "{{ result }}"
   
       - name: set_replicas
         include_tasks: set_replicas.yml
-        when: ready_replicas_count < 0
+        when: result.ready_replicas_count < 0
   
       - name: SET FACT MSG RESULT SUCCESS
         set_fact:
