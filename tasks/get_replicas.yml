@@ -19,7 +19,7 @@
           ready_replicas_count: "{{ result.resources[0].status.readyReplicas }}"
 
       - debug:
-          var: "{{ ready_replicas_count }}"
+          ready_replicas: "{{ ready_replicas_count }}"
   
       - set_fact:
           add_info: "Obtenção de réplicas em execução executada com SUCESSO!!!"

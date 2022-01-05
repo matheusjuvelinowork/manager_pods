@@ -10,7 +10,7 @@
         register: result
 
       - debug:
-          var: "{{ result.ready_replicas_count }}"
+          var: "{{ result }}"
   
       - name: set_replicas
         include_tasks: set_replicas.yml
