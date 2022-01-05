@@ -12,7 +12,8 @@
         namespace: "{{ namespace }}"
       register: result_execucao
 
-    - debug:
+    - name: DEBUG EXECUÇÃO
+      debug:
         var: result_execucao
 
     - set_fact:
