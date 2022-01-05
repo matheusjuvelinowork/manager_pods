@@ -7,14 +7,13 @@
   
       - name: OBTER PODS EM EXECUÇÃO
         k8s_info:
-          kind: Pod
+          name: "{{ name }}"
+          kind: Deployment
           namespace: "{{ namespace }}"
-          label_selectors:
-            - "app = {{ name }}"
-        register: pods
+        register: deployment
 
       - debug:
-          var: "{{ pods }}"
+          var: "{{ deployment }}"
 
       # - set_fact:
       #     pods_count: "{{ pods.resources | count }}"
