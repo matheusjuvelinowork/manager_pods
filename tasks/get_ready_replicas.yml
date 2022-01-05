@@ -1,28 +1,28 @@
 ---
 
-  - name: PLAYBOOK PARA OBTER PODS EM EXECUÇÃO
+  - name: OBTER QUANTIDADE DE RÉPLICAS EM EXECUÇÃO
     # --------------------------------------------------
     block:
     # --------------------------------------------------
   
-      - name: OBTER PODS EM EXECUÇÃO
+      - name: OBTER QUANTIDADE DE RÉPLICAS EM EXECUÇÃO POR DEPLOYMENT
         k8s_info:
           name: "{{ name }}"
           kind: Deployment
           namespace: "{{ namespace }}"
-        register: deployment
+        register: result
 
       - debug:
-          var: "{{ deployment }}"
+          var: "{{ result }}"
 
-      # - set_fact:
-      #     pods_count: "{{ pods.resources | count }}"
+      - set_fact:
+          ready_replicas_count: "{{ result.resources[0].status.readyReplicas }}"
 
-      # - debug:
-      #     var: "{{ pods_count }}"
+      - debug:
+          var: "{{ ready_replicas_count }}"
   
       - set_fact:
-          add_info: "Obtenção de pods em execução executada com SUCESSO!!!"
+          add_info: "Obtenção de réplicas em execução executada com SUCESSO!!!"
   
       - debug:
           msg: "{{ add_info }}"
